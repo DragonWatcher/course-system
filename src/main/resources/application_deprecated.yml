@@ -6,14 +6,14 @@ spring:
         url: jdbc:mysql://localhost:3306/course?useunicode=true&characterEncoding=utf8
         username: root
         password: root
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
 #指定数据库类型
 spring: 
     jpa:
         database: MYSQL
-#        show-sql: true
+        show-sql: true
         #hibernate相关设置
-#        hibernate:
-#            ddl-auto: update
-#            naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-#            dialect: org.hibernate.dialect.MySQL5Dialect
+        hibernate:
+            ddl-auto: update
+            naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+            dialect: org.hibernate.dialect.MySQL5Dialect
