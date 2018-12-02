@@ -5,10 +5,18 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.group.coursesystem.entity.enums.Degree;
-import com.group.coursesystem.entity.enums.Gender;
+import com.group.coursesystem.enums.Degree;
+import com.group.coursesystem.enums.Gender;
 
 /**
  * 学生信息实体类 <br>
@@ -16,9 +24,12 @@ import com.group.coursesystem.entity.enums.Gender;
  */
 @Entity
 @Table(name = "student")
-public class Student extends BaseEntity {
+public class Student {
 
-    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "stu_id")
+    private Long stuId;
 
     @Column(name = "stu_no")
     private Integer stuNo;
@@ -30,6 +41,7 @@ public class Student extends BaseEntity {
     private Gender gender;
 
     @Column(name = "degree")
+    @Enumerated(EnumType.STRING)
     private Degree degree;
 
     @Column(name = "phone_num")
@@ -43,6 +55,9 @@ public class Student extends BaseEntity {
     @Column(name = "class_num")
     private Integer classNum;
 
+    @ManyToMany(targetEntity = Course.class)
+    @JoinTable(name = "course_stu", joinColumns = { @JoinColumn(name = "stu_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "course_id") })
     private Set<Course> courses;
 
     @Column(name = "birthday")
@@ -57,6 +72,14 @@ public class Student extends BaseEntity {
         this.gender = gender;
         this.grade = grade;
         this.classNum = classNum;
+    }
+
+    public Long getStuId() {
+        return stuId;
+    }
+
+    public void setStuId(Long stuId) {
+        this.stuId = stuId;
     }
 
     public Integer getStuNo() {
@@ -137,9 +160,9 @@ public class Student extends BaseEntity {
 
     @Override
     public String toString() {
-        return "{stuNo : " + stuNo + ", stuName : " + stuName + ", gender : " + gender + ", degree : " + degree
-                + ", phoneNum : " + phoneNum + ", grade : " + grade + ", classNum : " + classNum + ", courses : "
-                + courses + ", birthday : " + birthday + "}";
+        return "{stuId : " + stuId + ", stuNo : " + stuNo + ", stuName : " + stuName + ", gender : " + gender
+                + ", degree : " + degree + ", phoneNum : " + phoneNum + ", grade : " + grade + ", classNum : "
+                + classNum + ", courses : " + courses + ", birthday : " + birthday + "}";
     }
 
 }

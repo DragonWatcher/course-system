@@ -9,7 +9,7 @@ import com.group.coursesystem.entity.Course;
  * 课程信息操作
  * <br>类名：CourseRepository<br>
  */
-@Repository
+@Repository(value = "couseRep")
 public interface CourseRepository extends JpaRepository<Course, Integer> {
     
 }

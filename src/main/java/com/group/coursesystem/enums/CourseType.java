@@ -1,4 +1,4 @@
-package com.group.coursesystem.entity.enums;
+package com.group.coursesystem.enums;
 
 /**
  * 课程类别 <br>

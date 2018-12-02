@@ -4,16 +4,27 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.group.coursesystem.entity.enums.CourseType;
-import com.group.coursesystem.entity.enums.ExamType;
+import com.group.coursesystem.enums.CourseType;
+import com.group.coursesystem.enums.ExamType;
 
 @Entity
 @Table(name = "course")
-public class Course extends BaseEntity {
+public class Course {
+
+    @Id
+    @Column(name = "course_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long courseId;
 
     @Column(name = "course_type")
+    @Enumerated(EnumType.STRING)
     private CourseType courseType;
 
     @Column(name = "course_name")
@@ -44,6 +55,14 @@ public class Course extends BaseEntity {
 
     @Column(name = "remark")
     private String remark;
+
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
+    }
 
     public CourseType getCourseType() {
         return courseType;
@@ -127,9 +146,10 @@ public class Course extends BaseEntity {
 
     @Override
     public String toString() {
-        return "{courseType : " + courseType + ", courseName : " + courseName + ", classRoom : " + classRoom
-                + ", teacherName : " + teacherName + ", period : " + period + ", startDate : " + startDate
-                + ", endDate : " + endDate + ", credit : " + credit + ", examType : " + examType + ", remark : "
-                + remark + "}";
+        return "{courseId : " + courseId + ", courseType : " + courseType + ", courseName : " + courseName
+                + ", classRoom : " + classRoom + ", teacherName : " + teacherName + ", period : " + period
+                + ", startDate : " + startDate + ", endDate : " + endDate + ", credit : " + credit + ", examType : "
+                + examType + ", remark : " + remark + "}";
     }
+
 }

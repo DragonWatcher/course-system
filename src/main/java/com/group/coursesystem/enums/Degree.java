@@ -1,4 +1,4 @@
-package com.group.coursesystem.entity.enums;
+package com.group.coursesystem.enums;
 /**
  * 学位类别
  * <br>类名：Degree<br>

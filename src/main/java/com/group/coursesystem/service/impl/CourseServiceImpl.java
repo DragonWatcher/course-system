@@ -9,7 +9,7 @@ import com.group.coursesystem.dao.CourseRepository;
 import com.group.coursesystem.entity.Course;
 import com.group.coursesystem.service.CourseService;
 
-@Service
+@Service(value = "courseSvc")
 public class CourseServiceImpl implements CourseService{
     
     @Autowired

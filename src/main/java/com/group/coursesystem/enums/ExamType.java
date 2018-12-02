@@ -1,4 +1,4 @@
-package com.group.coursesystem.entity.enums;
+package com.group.coursesystem.enums;
 
 /**
  * 考试制代表需要答题考试，评分制代表老师根据表现打分考核 <br>
