@@ -4,12 +4,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.group.coursesystem.interceptor.AuthInterceptor;
 import com.group.coursesystem.interceptor.LoginInterceptor;
 
 @Configuration
-public class WebAppConfigurer implements WebMvcConfigurer {
+public class WebAppConfigurer extends WebMvcConfigurerAdapter {
 
     /**
      * 添加拦截器
@@ -28,7 +29,7 @@ public class WebAppConfigurer implements WebMvcConfigurer {
         // 不受权限控制的请求
         authReg.excludePathPatterns("/", "/login", "/error", "/im/**", "/reg", "/verify/code");
 
-        WebMvcConfigurer.super.addInterceptors(registry);
+        super.addInterceptors(registry);
     }
 
 }
