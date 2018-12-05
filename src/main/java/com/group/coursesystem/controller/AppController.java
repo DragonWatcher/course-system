@@ -17,7 +17,12 @@ import com.group.coursesystem.enums.SysContents;
 @Transactional(readOnly = true)
 public class AppController {
 
-    private  final  static Logger logger = LoggerFactory.getLogger(AppController.class);
+    private final static Logger logger = LoggerFactory.getLogger(AppController.class);
+
+    @RequestMapping("/")
+    public String index() {
+        return "index";
+    }
 
     @RequestMapping("/login")
     public String login(HttpSession session) {
