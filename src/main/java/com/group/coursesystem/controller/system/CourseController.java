@@ -18,6 +18,7 @@ import com.group.coursesystem.service.CourseService;
 public class CourseController {
     private static final Logger logger = LoggerFactory.getLogger(CourseController.class);
 
+     
     @Autowired
     private CourseService courseSvc;
 

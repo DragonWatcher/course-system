@@ -37,6 +37,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.11</version>
 		</dependency>
 		<!-- 添加freemarker模板引擎 -->
 		<dependency>
