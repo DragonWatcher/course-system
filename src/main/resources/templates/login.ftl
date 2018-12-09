@@ -5,6 +5,7 @@
   <title>学生选课管理系统</title>
   <link rel="stylesheet" href="/css/login.css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+   
 </head>
 <body>
 <div class="logo_box">
@@ -17,10 +18,16 @@
     <div class="input_outer">
       <i class="fa fa-eye u_user"></i>
       <input required="required" placeholder="请输入密码" name="password" class="text" type="password">
+  		
+    </div>
+    <div class="checkbox my_checkbox">
+   		 <label><input name='subject' type="radio" checked="checked" value="S" />学生</label>
+		 <label><input name='subject' type="radio"  value="T" />教师</label>
+		 <label><input name='subject' type="radio"  value="M"/>管理员</label>
     </div>
     <div class="mb2">
       <button class="act-but submit" style="color: #FFFFFF">登录</button>
-      <div class="actions"><a href="/reg">注册</a></div>
+      <!--<div class="actions"><a href="/reg">注册</a></div>-->
     </div>
   <#if error??>
     <div style="text-align:center;padding: 10px;">${error}</div>

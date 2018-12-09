@@ -132,3 +132,17 @@ input[placeholder], [placeholder], *[placeholder] {
 .actions a:hover {
   color: #ff6600;
 }
+
+
+.my_checkbox{
+	margin-bottom: 20px;
+}
+.my_checkbox label{
+	display: inline-block;
+	margin-right: 10px;
+}
+.my_checkbox label input{
+	display: inline-block;
+	margin-right: 4px;
+	vertical-align: middle;
+}
