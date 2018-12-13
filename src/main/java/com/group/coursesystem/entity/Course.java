@@ -1,6 +1,8 @@
 package com.group.coursesystem.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -39,6 +42,9 @@ public class Course {
     @JoinColumn(name = "teacher_id")
     @ManyToOne
     private Teacher teacher;
+
+    @ManyToMany(mappedBy = "selectedCourses")
+    private Set<Student> students = new HashSet<>();
 
     /** 学时 */
     @Column(name = "period")
@@ -98,6 +104,14 @@ public class Course {
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
 
     public Integer getPeriod() {

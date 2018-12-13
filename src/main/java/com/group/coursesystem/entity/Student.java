@@ -1,6 +1,7 @@
 package com.group.coursesystem.entity;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -62,9 +63,10 @@ public class Student {
     private Integer classNum;
 
     @ManyToMany(targetEntity = Course.class)
-    @JoinTable(name = "course_stu", joinColumns = { @JoinColumn(name = "stu_id") }, inverseJoinColumns = {
-            @JoinColumn(name = "course_id") })
-    private Set<Course> selectedCourses;
+    @JoinTable(name = "stu_course", 
+            joinColumns = { @JoinColumn(name = "stu_id") }, 
+            inverseJoinColumns = { @JoinColumn(name = "course_id") })
+    private Set<Course> selectedCourses = new HashSet<>();
 
     @Column(name = "birthday")
     private Date birthday;
