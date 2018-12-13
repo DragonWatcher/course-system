@@ -25,7 +25,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 // ajax请求，返回错误码
                 response.setStatus(402);
             } else {
-                response.sendRedirect("/login");
+                response.sendRedirect("/toLogin");
             }
             return false;
         }

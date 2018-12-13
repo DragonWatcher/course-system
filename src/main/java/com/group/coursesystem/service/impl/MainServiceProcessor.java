@@ -20,9 +20,9 @@ public class MainServiceProcessor implements MainService {
 
     private static final Logger logger = LoggerFactory.getLogger(MainServiceProcessor.class);
 
-    public static final String REDIRECT_LOGIN = "redirect:/login";
+    public static final String REDIRECT_TOLOGIN = "redirect:/toLogin";
 
-    public static final String INDEX_PAGE = "redirect:/";
+    public static final String REDIRECT_INDEX_PAGE = "redirect:/";
 
     @Autowired
     private CheckService checkService;
@@ -36,14 +36,15 @@ public class MainServiceProcessor implements MainService {
         // 参数校验
         if (CheckService.isEmpty(userName) || CheckService.isEmpty(password)) {
             rAttributes.addFlashAttribute("error", "参数错误！");
-            return REDIRECT_LOGIN;
+            return REDIRECT_TOLOGIN;
         }
 
         User user = checkService.checkUser(role, userName, password);
 
         if (user == null) {
+            logger.info("用户名或密码错误...");
             rAttributes.addFlashAttribute("error", "用户名或密码错误！");
-            return REDIRECT_LOGIN;
+            return "login";
         }
         logger.info("用户登录成功 : " + user + "");
 
@@ -53,7 +54,7 @@ public class MainServiceProcessor implements MainService {
         // 是否是管理员
         session.setAttribute("isAdmin", Role.A.equals(user.getRole()));
 
-        return INDEX_PAGE;
+        return REDIRECT_INDEX_PAGE;
     }
 
 }

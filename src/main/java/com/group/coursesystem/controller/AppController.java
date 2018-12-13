@@ -27,10 +27,10 @@ public class AppController {
         return "index";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/toLogin", method = RequestMethod.GET)
     public String login(HttpSession session) {
         if (session.getAttribute(SysContents.SESSION_MEMBER_KEY) != null) {
-            return MainServiceProcessor.INDEX_PAGE;
+            return MainServiceProcessor.REDIRECT_INDEX_PAGE;
         }
         return "login";
     }
