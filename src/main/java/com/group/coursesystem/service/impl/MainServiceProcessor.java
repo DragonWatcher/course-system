@@ -16,9 +16,9 @@ import com.group.coursesystem.service.CheckService;
 import com.group.coursesystem.service.MainService;
 
 @Service("mainSvc")
-public class MainServiceImpl implements MainService {
+public class MainServiceProcessor implements MainService {
 
-    private static final Logger logger = LoggerFactory.getLogger(MainServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(MainServiceProcessor.class);
 
     public static final String REDIRECT_LOGIN = "redirect:/login";
 
@@ -49,9 +49,9 @@ public class MainServiceImpl implements MainService {
 
         // 将用户可用菜单和权限存入session
         session.setAttribute("menus", resources.getMenusByRole(user.getRole()));
-        session.setAttribute("session_user", user);
+        session.setAttribute(SysContents.SESSION_MEMBER_KEY, user);
         // 是否是管理员
-        session.setAttribute(SysContents.SESSION_MEMBER_KEY, Role.A.equals(user.getRole()));
+        session.setAttribute("isAdmin", Role.A.equals(user.getRole()));
 
         return INDEX_PAGE;
     }

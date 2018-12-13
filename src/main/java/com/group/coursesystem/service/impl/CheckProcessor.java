@@ -1,5 +1,7 @@
 package com.group.coursesystem.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import com.group.coursesystem.service.CheckService;
 
 @Service
 public class CheckProcessor implements CheckService {
+    
+    private static final Logger logger = LoggerFactory.getLogger(CheckProcessor.class);
 
     @Autowired
     private Admin admin;
@@ -26,6 +30,7 @@ public class CheckProcessor implements CheckService {
     @SuppressWarnings("unchecked")
     @Override
     public User checkUser(String role, String name, String password) {
+        logger.info("开始校验请求用户...");
         // 判断是否是管理员
         if (Admin.role.equals(role)) {
             if (admin.getName().equals(name)
