@@ -3,11 +3,13 @@ package com.group.coursesystem.entity;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import com.group.coursesystem.enums.Role;
+
 @Component
 @ConfigurationProperties(prefix = "admin")
 public class Admin {
 
-    public static final String role = "admin";
+    public static final String role = Role.A;
 
     private String name;
 

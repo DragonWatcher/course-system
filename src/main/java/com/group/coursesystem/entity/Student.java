@@ -18,6 +18,7 @@ import javax.persistence.Table;
 
 import com.group.coursesystem.enums.Degree;
 import com.group.coursesystem.enums.Gender;
+import com.group.coursesystem.enums.Role;
 
 /**
  * 学生信息实体类 <br>
@@ -49,7 +50,7 @@ public class Student {
     private Degree degree;
 
     /** 角色固定为student */
-    public static final String role = "student";
+    public static final String role = Role.S;
 
     @Column(name = "phone_num")
     private Integer phoneNum;

@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.group.coursesystem.enums.Gender;
+import com.group.coursesystem.enums.Role;
 
 @Entity
 @Table(name = "teacher")
@@ -40,7 +41,7 @@ public class Teacher {
     private Set<Course> cources = new HashSet<>();
 
     /** 教师角色 */
-    public static final String role = "teacher";
+    public static final String role = Role.T;
 
     public Long getTeacherId() {
         return teacherId;
