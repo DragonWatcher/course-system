@@ -27,7 +27,7 @@ public class AppController {
         return "index";
     }
 
-    @RequestMapping(value = "/toLogin", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(HttpSession session) {
         if (session.getAttribute(SysContents.SESSION_MEMBER_KEY) != null) {
             return MainServiceProcessor.REDIRECT_INDEX_PAGE;

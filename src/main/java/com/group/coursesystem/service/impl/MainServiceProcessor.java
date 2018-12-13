@@ -20,7 +20,7 @@ public class MainServiceProcessor implements MainService {
 
     private static final Logger logger = LoggerFactory.getLogger(MainServiceProcessor.class);
 
-    public static final String REDIRECT_TOLOGIN = "redirect:/toLogin";
+    public static final String REDIRECT_TOLOGIN = "redirect:/login";
 
     public static final String REDIRECT_INDEX_PAGE = "redirect:/";
 
