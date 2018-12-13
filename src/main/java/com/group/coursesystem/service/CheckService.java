@@ -1,5 +1,7 @@
 package com.group.coursesystem.service;
 
+import com.group.coursesystem.entity.User;
+
 /**
  * 校验服务 <br>
  * 类名：CheckService<br>
@@ -9,5 +11,12 @@ package com.group.coursesystem.service;
 public interface CheckService {
 
     /** 判断是否有此用户 */
-    boolean checkUser(String role, String name, String password);
+    User checkUser(String role, String name, String password);
+
+    public static boolean isEmpty(String arg) {
+        if (arg == null || arg.equals("")) {
+            return true;
+        }
+        return false;
+    }
 }

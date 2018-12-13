@@ -8,6 +8,6 @@ package com.group.coursesystem.enums;
  */
 public interface Role {
 
-    String A = "admin", T = "teacher", S = "studetn";
+    String A = "admin", T = "teacher", S = "student";
 
 }

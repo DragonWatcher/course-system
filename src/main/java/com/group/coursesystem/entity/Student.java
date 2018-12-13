@@ -64,9 +64,8 @@ public class Student {
     private Integer classNum;
 
     @ManyToMany(targetEntity = Course.class)
-    @JoinTable(name = "stu_course", 
-            joinColumns = { @JoinColumn(name = "stu_id") }, 
-            inverseJoinColumns = { @JoinColumn(name = "course_id") })
+    @JoinTable(name = "stu_course", joinColumns = { @JoinColumn(name = "stu_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "course_id") })
     private Set<Course> selectedCourses = new HashSet<>();
 
     @Column(name = "birthday")
@@ -173,9 +172,9 @@ public class Student {
 
     @Override
     public String toString() {
-        return "{stuId : " + stuId + ", stuNo : " + stuNo + ", stuName : " + stuName + ", gender : " + gender
-                + ", degree : " + degree + ", phoneNum : " + phoneNum + ", grade : " + grade + ", classNum : "
-                + classNum + ", selectedCourses : " + selectedCourses + ", birthday : " + birthday + "}";
+        return "{stuId : " + stuId + ", stuNo : " + stuNo + ", stuName : " + stuName + ", password : " + password
+                + ", gender : " + gender + ", degree : " + degree + ", phoneNum : " + phoneNum + ", grade : " + grade
+                + ", classNum : " + classNum + ", selectedCourses : " + selectedCourses + ", birthday : " + birthday
+                + "}";
     }
-
 }

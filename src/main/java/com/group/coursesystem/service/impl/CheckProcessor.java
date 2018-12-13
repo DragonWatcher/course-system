@@ -8,6 +8,7 @@ import com.group.coursesystem.dao.TeacherRepository;
 import com.group.coursesystem.entity.Admin;
 import com.group.coursesystem.entity.Student;
 import com.group.coursesystem.entity.Teacher;
+import com.group.coursesystem.entity.User;
 import com.group.coursesystem.service.CheckService;
 
 @Service
@@ -22,26 +23,30 @@ public class CheckProcessor implements CheckService {
     @Autowired
     private TeacherRepository teacherRep;
 
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean checkUser(String role, String name, String password) {
+    public User checkUser(String role, String name, String password) {
         // 判断是否是管理员
         if (Admin.role.equals(role)) {
-            if (admin.getName()
-                     .equals(name)
-                    && admin.getPassword()
-                            .equals(password)) {
-                return Boolean.TRUE;
+            if (admin.getName().equals(name)
+                    && admin.getPassword().equals(password)) {
+                return new User(0000 + "_admin", admin.getName(), Admin.role, null, admin.getClass());
             }
         } else if (Teacher.role.equals(role)) {
-            if (teacherRep.findByTeacherNameAndPassword(name, password) != null) {
-                return Boolean.TRUE;
+            Teacher thr = teacherRep.findByTeacherNameAndPassword(name, password);
+            if (thr != null) {
+                return new User(thr.getTeacherId() + "_" + thr.getTeacherName(), thr.getTeacherName(), Teacher.role,
+                        thr.getGender(), thr.getClass());
             }
         } else if (Student.role.equals(role)) {
-            if (stuRep.findByStuNameAndPassword(name, password) != null) {
-                return Boolean.TRUE;
+            Student stu = stuRep.findByStuNameAndPassword(name, password);
+            if (stu != null) {
+                return new User(stu.getStuId() + "_" + stu.getStuName(), stu.getStuName(), Student.role,
+                        stu.getGender(), stu.getClass());
             }
         }
-        return false;
+
+        return null;
     }
 
 }

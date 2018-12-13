@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.group.coursesystem.enums.SysContents;
 
@@ -24,7 +25,7 @@ public class AppController {
         return "index";
     }
 
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(HttpSession session) {
         if (session.getAttribute(SysContents.SESSION_MEMBER_KEY) != null) {
             logger.info("s_member != null");
@@ -32,4 +33,5 @@ public class AppController {
         }
         return "login";
     }
+
 }
