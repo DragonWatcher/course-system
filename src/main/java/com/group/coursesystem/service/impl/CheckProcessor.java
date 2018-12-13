@@ -11,22 +11,25 @@ import com.group.coursesystem.entity.Teacher;
 import com.group.coursesystem.service.CheckService;
 
 @Service
-public class CheckProcessor implements CheckService{
+public class CheckProcessor implements CheckService {
 
     @Autowired
     private Admin admin;
-    
+
     @Autowired
     private StudentRepository stuRep;
-    
+
     @Autowired
     private TeacherRepository teacherRep;
-    
+
     @Override
     public boolean checkUser(String role, String name, String password) {
         // 判断是否是管理员
         if (Admin.role.equals(role)) {
-            if (admin.getName().equals(name) && admin.getPassword().equals(password) ) {
+            if (admin.getName()
+                     .equals(name)
+                    && admin.getPassword()
+                            .equals(password)) {
                 return Boolean.TRUE;
             }
         } else if (Teacher.role.equals(role)) {

@@ -12,16 +12,17 @@ import com.group.coursesystem.entity.Course;
 import com.group.coursesystem.service.CourseService;
 
 @Service(value = "courseSvc")
-public class CourseServiceImpl implements CourseService{
+public class CourseServiceImpl implements CourseService {
+
     private static final Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
-    
+
     @Autowired
     private CourseRepository couseRep;
 
     @Override
     public List<Course> findAllCourses() {
         List<Course> allCourses = couseRep.findAll();
-        logger.info("查询全部课程 : " +  allCourses);
+        logger.info("查询全部课程 : " + allCourses);
         return allCourses;
     }
 

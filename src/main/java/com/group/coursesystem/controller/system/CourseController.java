@@ -16,9 +16,9 @@ import com.group.coursesystem.service.CourseService;
 @Controller
 @RequestMapping("/courses")
 public class CourseController {
+
     private static final Logger logger = LoggerFactory.getLogger(CourseController.class);
 
-     
     @Autowired
     private CourseService courseSvc;
 
@@ -28,7 +28,7 @@ public class CourseController {
         logger.info("收到查询全部课程请求，开始查询全部课程...");
         return courseSvc.findAllCourses();
     }
-    
+
     @GetMapping()
     public String returnWebPage() {
         return "course/courses";
