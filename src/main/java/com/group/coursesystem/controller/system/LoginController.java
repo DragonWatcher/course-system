@@ -17,9 +17,9 @@ public class LoginController {
     private MainService mainSvc;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String doLoin(String role, String userName, String password, RedirectAttributes rAttributes,
+    public String doLoin(String role, String username, String password, RedirectAttributes rAttributes,
             HttpSession session) {
-        return mainSvc.doLoin(role, userName, password, rAttributes, session);
+        return mainSvc.doLoin(role, username, password, rAttributes, session);
     }
 
 }

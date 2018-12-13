@@ -28,7 +28,7 @@ public class AppController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(HttpSession session) {
         if (session.getAttribute(SysContents.SESSION_MEMBER_KEY) != null) {
-            logger.info("s_member != null");
+            logger.info(SysContents.SESSION_MEMBER_KEY + " != null");
             return "redirect:/";
         }
         return "login";
