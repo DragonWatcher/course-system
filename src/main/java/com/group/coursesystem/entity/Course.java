@@ -1,6 +1,8 @@
 package com.group.coursesystem.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.group.coursesystem.enums.CourseType;
@@ -20,7 +25,7 @@ public class Course {
 
     @Id
     @Column(name = "course_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long courseId;
 
     @Column(name = "course_type")
@@ -33,8 +38,13 @@ public class Course {
     @Column(name = "class_room")
     private String classRoom;
 
-    @Column(name = "teacher_name")
-    private String teacherName;
+    /** 使用 @ManyToOne 来映射多对一的关联关系,使用 @JoinColumn 来映射外键 */
+    @JoinColumn(name = "teacher_id")
+    @ManyToOne
+    private Teacher teacher;
+
+    @ManyToMany(mappedBy = "selectedCourses")
+    private Set<Student> students = new HashSet<>();
 
     /** 学时 */
     @Column(name = "period")
@@ -88,12 +98,20 @@ public class Course {
         this.classRoom = classRoom;
     }
 
-    public String getTeacherName() {
-        return teacherName;
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
 
     public Integer getPeriod() {
@@ -142,14 +160,6 @@ public class Course {
 
     public void setRemark(String remark) {
         this.remark = remark;
-    }
-
-    @Override
-    public String toString() {
-        return "{courseId : " + courseId + ", courseType : " + courseType + ", courseName : " + courseName
-                + ", classRoom : " + classRoom + ", teacherName : " + teacherName + ", period : " + period
-                + ", startDate : " + startDate + ", endDate : " + endDate + ", credit : " + credit + ", examType : "
-                + examType + ", remark : " + remark + "}";
     }
 
 }

@@ -2,7 +2,7 @@ package com.group.coursesystem.enums;
 
 public interface SysContents {
 
-    String SESSION_MEMBER_KEY = "s_member";
+    String SESSION_MEMBER_KEY = "session_member";
 
     String WEB_SOCKET_USERNAME = "socket_member";
 

@@ -1,6 +1,7 @@
 package com.group.coursesystem.entity;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 
 import com.group.coursesystem.enums.Degree;
 import com.group.coursesystem.enums.Gender;
+import com.group.coursesystem.enums.Role;
 
 /**
  * 学生信息实体类 <br>
@@ -27,7 +29,7 @@ import com.group.coursesystem.enums.Gender;
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "stu_id")
     private Long stuId;
 
@@ -37,12 +39,18 @@ public class Student {
     @Column(name = "stu_name")
     private String stuName;
 
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "gender")
     private Gender gender;
 
     @Column(name = "degree")
     @Enumerated(EnumType.STRING)
     private Degree degree;
+
+    /** 角色固定为student */
+    public static final String role = Role.S;
 
     @Column(name = "phone_num")
     private Integer phoneNum;
@@ -56,9 +64,9 @@ public class Student {
     private Integer classNum;
 
     @ManyToMany(targetEntity = Course.class)
-    @JoinTable(name = "course_stu", joinColumns = { @JoinColumn(name = "stu_id") }, inverseJoinColumns = {
+    @JoinTable(name = "stu_course", joinColumns = { @JoinColumn(name = "stu_id") }, inverseJoinColumns = {
             @JoinColumn(name = "course_id") })
-    private Set<Course> courses;
+    private Set<Course> selectedCourses = new HashSet<>();
 
     @Column(name = "birthday")
     private Date birthday;
@@ -96,6 +104,14 @@ public class Student {
 
     public void setStuName(String stuName) {
         this.stuName = stuName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Gender getGender() {
@@ -138,12 +154,12 @@ public class Student {
         this.classNum = classNum;
     }
 
-    public Set<Course> getCourses() {
-        return courses;
+    public Set<Course> getSelectedCourses() {
+        return selectedCourses;
     }
 
-    public void setCourses(Set<Course> courses) {
-        this.courses = courses;
+    public void setSelectedCourses(Set<Course> selectedCourses) {
+        this.selectedCourses = selectedCourses;
     }
 
     public Date getBirthday() {
@@ -154,15 +170,11 @@ public class Student {
         this.birthday = birthday;
     }
 
-    public static String getAcademy() {
-        return academy;
-    }
-
     @Override
     public String toString() {
-        return "{stuId : " + stuId + ", stuNo : " + stuNo + ", stuName : " + stuName + ", gender : " + gender
-                + ", degree : " + degree + ", phoneNum : " + phoneNum + ", grade : " + grade + ", classNum : "
-                + classNum + ", courses : " + courses + ", birthday : " + birthday + "}";
+        return "{stuId : " + stuId + ", stuNo : " + stuNo + ", stuName : " + stuName + ", password : " + password
+                + ", gender : " + gender + ", degree : " + degree + ", phoneNum : " + phoneNum + ", grade : " + grade
+                + ", classNum : " + classNum + ", selectedCourses : " + selectedCourses + ", birthday : " + birthday
+                + "}";
     }
-
 }
