@@ -1,7 +1,5 @@
 package com.group.coursesystem.utils;
 
-import org.junit.Test;
-
 public class StringUtil {
 
     /**
