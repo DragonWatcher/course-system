@@ -18,6 +18,8 @@ public class User {
 
     private String userName;
 
+    private String realName;
+
     private String password;
 
     private String role;
@@ -32,9 +34,10 @@ public class User {
     public User() {
     }
 
-    public User(String userId, String userName, String role, Gender gender, Class clazz) {
+    public User(String userId, String userName, String realName, String role, Gender gender, Class clazz) {
         this.userId = userId;
         this.userName = userName;
+        this.realName = realName;
         this.role = role;
         this.gender = gender;
         this.clazz = clazz;
@@ -54,6 +57,14 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public String getPassword() {
@@ -98,7 +109,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "{userId : " + userId + ", userName : " + userName + ", password : " + password + ", role : " + role
-                + ", gender : " + gender + ", clazz : " + clazz.getSimpleName() + ", phoneNum : " + phoneNum + "}";
+        return "{userId : " + userId + ", userName : " + userName + ", realName : " + realName + ", password : "
+                + password + ", role : " + role + ", gender : " + gender + ", clazz : " + clazz + ", phoneNum : "
+                + phoneNum + "}";
     }
 }
