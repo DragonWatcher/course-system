@@ -26,7 +26,7 @@ public class Teacher {
     private Long teacherId;
 
     @Column(name = "username")
-    private String userName;
+    private String username;
 
     @Column(name = "teacher_name")
     @NotNull
@@ -56,12 +56,12 @@ public class Teacher {
         this.teacherId = teacherId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getTeacherName() {
@@ -106,7 +106,7 @@ public class Teacher {
 
     @Override
     public String toString() {
-        return "{teacherId : " + teacherId + ", userName : " + userName + ", teacherName : " + teacherName
+        return "{teacherId : " + teacherId + ", username : " + username + ", teacherName : " + teacherName
                 + ", password : " + password + ", gender : " + gender + ", jobTitle : " + jobTitle + ", cources : "
                 + cources + "}";
     }
