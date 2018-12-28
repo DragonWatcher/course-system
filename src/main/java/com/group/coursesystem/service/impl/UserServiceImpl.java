@@ -49,9 +49,9 @@ public class UserServiceImpl implements UserService {
                 // 新增用户的默认属性初始化
                 if (teacher.getTeacherId() == null)
                     teacher.setPassword(SysContents.INITIAL_PASSWORD);
-
-                teacher.setPassword(tchrRep.findOne(teacher.getTeacherId())
-                                           .getPassword());
+                else
+                    teacher.setPassword(tchrRep.findOne(teacher.getTeacherId()).getPassword());
+                
                 tchrRep.save(teacher);
             }, "TH-savingTeacher").start();
 
@@ -64,9 +64,8 @@ public class UserServiceImpl implements UserService {
             new Thread(() -> {
                 if (student.getStuId() == null)
                     student.setPassword(SysContents.INITIAL_PASSWORD);
-
-                student.setPassword(stuRep.findOne(student.getStuId())
-                                          .getPassword());
+                else
+                    student.setPassword(stuRep.findOne(student.getStuId()).getPassword());
 
                 stuRep.save(student);
             }, "TH-savingStudent").start();
