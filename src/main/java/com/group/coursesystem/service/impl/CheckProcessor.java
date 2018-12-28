@@ -40,7 +40,7 @@ public class CheckProcessor implements CheckService {
         } else if (Teacher.role.equals(role)) {
             Teacher thr = teacherRep.findByUsernameAndPassword(name, password);
             if (thr != null) {
-                return new User(thr.getTeacherId() + "_" + thr.getUserName(), thr.getTeacherName(), Teacher.role,
+                return new User(thr.getTeacherId() + "_" + thr.getUsername(), thr.getTeacherName(), Teacher.role,
                         thr.getGender(), thr.getClass());
             }
         } else if (Student.role.equals(role)) {
