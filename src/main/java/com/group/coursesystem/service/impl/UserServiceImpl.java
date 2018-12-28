@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.group.coursesystem.dao.StudentRepository;
 import com.group.coursesystem.dao.TeacherRepository;
 import com.group.coursesystem.entity.Student;
@@ -42,12 +43,15 @@ public class UserServiceImpl implements UserService {
         Class clazz = null;
         if (isTeacher) {
             // 添加教师
-            Teacher teacher = (Teacher) user;
+            Teacher teacher = JSONObject.toJavaObject(JSONObject.parseObject(JSONObject.toJSONString(user)),
+                    Teacher.class);
             new Thread(() -> {
                 // 新增用户的默认属性初始化
-                if (teacher.getTeacherId() == null) {
+                if (teacher.getTeacherId() == null)
                     teacher.setPassword(SysContents.INITIAL_PASSWORD);
-                }
+
+                teacher.setPassword(tchrRep.findOne(teacher.getTeacherId())
+                                           .getPassword());
                 tchrRep.save(teacher);
             }, "TH-savingTeacher").start();
 
@@ -55,10 +59,15 @@ public class UserServiceImpl implements UserService {
             userStr = teacher.toString();
         } else if (isStudent) {
             // 添加学生
-            Student student = (Student) user;
+            Student student = JSONObject.toJavaObject(JSONObject.parseObject(JSONObject.toJSONString(user)),
+                    Student.class);
             new Thread(() -> {
                 if (student.getStuId() == null)
                     student.setPassword(SysContents.INITIAL_PASSWORD);
+
+                student.setPassword(stuRep.findOne(student.getStuId())
+                                          .getPassword());
+
                 stuRep.save(student);
             }, "TH-savingStudent").start();
 
@@ -66,8 +75,9 @@ public class UserServiceImpl implements UserService {
             userStr = student.toString();
         }
         logger.info("添加或更新<" + clazz.getSimpleName() + "> : " + userStr);
-        String resultMessage = "添加" + (isTeacher ? "教师" : "学生") + "成功!";
+        String resultMessage = "添加或更新" + (isTeacher ? "教师" : "学生") + "成功!";
 
         return new SystemResult(SysContents.SUCCESS, resultMessage, clazz);
     }
+
 }
