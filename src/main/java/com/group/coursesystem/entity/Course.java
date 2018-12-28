@@ -162,4 +162,11 @@ public class Course {
         this.remark = remark;
     }
 
+    @Override
+    public String toString() {
+        return "{courseId : " + courseId + ", courseType : " + courseType + ", courseName : " + courseName
+                + ", classRoom : " + classRoom + ", teacher : " + teacher + ", students : " + students + ", period : "
+                + period + ", startDate : " + startDate + ", endDate : " + endDate + ", credit : " + credit
+                + ", examType : " + examType + ", remark : " + remark + "}";
+    }
 }

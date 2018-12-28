@@ -8,4 +8,7 @@ public interface SysContents {
 
     String SESSION_VERIFY_CODE_KEY = "verify_code";
 
+    String SUCCESS = "SUCCESS";
+    
+    String FAIL = "FAIL";
 }

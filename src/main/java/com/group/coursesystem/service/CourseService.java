@@ -3,6 +3,7 @@ package com.group.coursesystem.service;
 import java.util.List;
 
 import com.group.coursesystem.entity.Course;
+import com.group.coursesystem.entity.SystemResult;
 
 /**
  * 课程处理服务类 <br>
@@ -13,4 +14,6 @@ import com.group.coursesystem.entity.Course;
 public interface CourseService {
 
     public List<Course> findAllCourses();
+    
+    public SystemResult addOneCourse(Course course);
 }

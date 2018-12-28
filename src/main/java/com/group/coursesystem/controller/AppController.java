@@ -27,6 +27,13 @@ public class AppController {
         return "index";
     }
 
+    /**
+     * 返回登录首页
+     * <br>作者： mht<br> 
+     * 时间：2018年12月28日-上午11:22:16<br>
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(HttpSession session) {
         if (session.getAttribute(SysContents.SESSION_MEMBER_KEY) != null) {
