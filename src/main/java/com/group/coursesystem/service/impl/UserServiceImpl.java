@@ -3,6 +3,7 @@ package com.group.coursesystem.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.group.coursesystem.dao.StudentRepository;
 import com.group.coursesystem.dao.TeacherRepository;
@@ -13,6 +14,7 @@ import com.group.coursesystem.enums.SysContents;
 import com.group.coursesystem.service.CheckService;
 import com.group.coursesystem.service.UserService;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
