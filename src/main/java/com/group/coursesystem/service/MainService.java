@@ -12,6 +12,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 public interface MainService {
     
-    String doLoin(String role, String userName, String password, RedirectAttributes rAttributes, HttpSession session);
+    public String doLoin(String role, String userName, String password, RedirectAttributes rAttributes, HttpSession session);
+    
+    public String logout(HttpSession session);
 
 }

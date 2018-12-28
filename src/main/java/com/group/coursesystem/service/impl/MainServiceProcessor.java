@@ -56,4 +56,11 @@ public class MainServiceProcessor implements MainService {
         return REDIRECT_INDEX_PAGE;
     }
 
+    @Override
+    public String logout(HttpSession session) {
+        logger.info("用户注销..." + session.getAttribute(SysContents.SESSION_MEMBER_KEY));
+        session.invalidate();
+        return REDIRECT_TOLOGIN;
+    }
+
 }
