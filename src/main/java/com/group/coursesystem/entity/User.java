@@ -25,7 +25,6 @@ public class User {
     private Gender gender;
 
     /** 具体的类型对象 */
-
     private Class clazz;
 
     private Integer phoneNum;

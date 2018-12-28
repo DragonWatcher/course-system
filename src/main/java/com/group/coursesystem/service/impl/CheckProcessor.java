@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.group.coursesystem.dao.StudentRepository;
 import com.group.coursesystem.dao.TeacherRepository;
 import com.group.coursesystem.entity.Admin;
@@ -15,7 +16,7 @@ import com.group.coursesystem.service.CheckService;
 
 @Service
 public class CheckProcessor implements CheckService {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(CheckProcessor.class);
 
     @Autowired
@@ -33,8 +34,10 @@ public class CheckProcessor implements CheckService {
         logger.info("开始校验请求用户...");
         // 判断是否是管理员
         if (Admin.role.equals(role)) {
-            if (admin.getName().equals(name)
-                    && admin.getPassword().equals(password)) {
+            if (admin.getName()
+                     .equals(name)
+                    && admin.getPassword()
+                            .equals(password)) {
                 return new User(0000 + "_admin", admin.getName(), Admin.role, null, admin.getClass());
             }
         } else if (Teacher.role.equals(role)) {
@@ -51,6 +54,20 @@ public class CheckProcessor implements CheckService {
             }
         }
 
+        return null;
+    }
+
+    @Override
+    public Boolean checkTeacherByRole(Object user) {
+        // 先判断新加用户是教师还是学生
+        String role = JSONObject.parseObject(JSONObject.toJSONString(user))
+                                .getString("role");
+        if (role == null || role.equals(""))
+            return null;
+        if (role.equals(Teacher.role))
+            return true;
+        if (role.equals(Student.role))
+            return false;
         return null;
     }
 

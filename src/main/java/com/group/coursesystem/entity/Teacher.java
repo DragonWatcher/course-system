@@ -91,4 +91,10 @@ public class Teacher {
         this.cources = cources;
     }
 
+    @Override
+    public String toString() {
+        return "{teacherId : " + teacherId + ", teacherName : " + teacherName + ", password : " + password
+                + ", gender : " + gender + ", jobTitle : " + jobTitle + ", cources : " + cources + "}";
+    }
+    
 }
