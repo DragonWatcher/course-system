@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.group.coursesystem.enums.Gender;
 import com.group.coursesystem.enums.Role;
@@ -25,6 +26,7 @@ public class Teacher {
     private Long teacherId;
 
     @Column(name = "teacher_name")
+    @NotNull
     private String teacherName;
 
     @Column(name = "password")
