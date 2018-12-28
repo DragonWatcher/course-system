@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
         logger.info("添加或更新<" + clazz.getSimpleName() + "> : " + userStr);
         String resultMessage = "添加或更新" + (isTeacher ? "教师" : "学生") + "成功!";
 
-        return new SystemResult(SysContents.SUCCESS, resultMessage, clazz);
+        return new SystemResult(SysContents.SUCCESS, resultMessage, clazz.getSimpleName().toLowerCase());
     }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.group.coursesystem.controller.AppController;
 import com.group.coursesystem.controller.AttachmentController;
+import com.group.coursesystem.controller.system.LoginController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +29,8 @@ public class AuthInterceptor implements HandlerInterceptor {
         boolean isAdmin = (boolean) session.getAttribute("isAdmin");
 
         HandlerMethod hm = (HandlerMethod) handler;
-        if (hm.getBean() instanceof AppController || hm.getBean() instanceof AttachmentController || isAdmin) {
+        if (hm.getBean() instanceof AppController || hm.getBean() instanceof AttachmentController
+                || hm.getBean() instanceof LoginController || isAdmin) {
             // App里面的就不做权限控制了，相当于公共的，省的写一个就要配置一个例外
             // 超管也直接跳过权限
             return true;
@@ -38,19 +40,19 @@ public class AuthInterceptor implements HandlerInterceptor {
         Set<String> urls = (Set<String>) session.getAttribute("urls");
         String uri = request.getRequestURI();
         // 暂时不做权限的url拦截
-//        if (!urls.contains(uri)) {
-//
-//            if (isAjax(request)) {
-//                response.setStatus(401);
-//            } else {
-//                response.setContentType("text/html;charset=utf-8");
-//                // 非ajax请求，没有权限，转到提示页面
-//                request.getRequestDispatcher("/reject")
-//                       .forward(request, response);
-//            }
-//            // 没有权限
-//            return false;
-//        }
+        // if (!urls.contains(uri)) {
+        //
+        // if (isAjax(request)) {
+        // response.setStatus(401);
+        // } else {
+        // response.setContentType("text/html;charset=utf-8");
+        // // 非ajax请求，没有权限，转到提示页面
+        // request.getRequestDispatcher("/reject")
+        // .forward(request, response);
+        // }
+        // // 没有权限
+        // return false;
+        // }
 
         return true;
     }

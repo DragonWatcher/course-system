@@ -1,4 +1,4 @@
-package com.group.coursesystem.resources;
+package com.group.coursesystem.service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +12,7 @@ import com.group.coursesystem.entity.Teacher;
 import com.group.coursesystem.enums.Menu;
 
 @Component
-public class Resources {
+public class MenuStore {
     
     private static final Map<String, Set<Menu>> menuMap = new HashMap<>();
 
