@@ -8,5 +8,5 @@ import com.group.coursesystem.entity.Student;
 @Repository("stuRep")
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
-    Student findByStuNameAndPassword(String stuName, String password);
+    Student findByUsernameAndPassword(String username, String password);
 }

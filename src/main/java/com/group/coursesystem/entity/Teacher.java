@@ -25,6 +25,9 @@ public class Teacher {
     @Column(name = "teacher_id")
     private Long teacherId;
 
+    @Column(name = "username")
+    private String userName;
+
     @Column(name = "teacher_name")
     @NotNull
     private String teacherName;
@@ -51,6 +54,14 @@ public class Teacher {
 
     public void setTeacherId(Long teacherId) {
         this.teacherId = teacherId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getTeacherName() {
@@ -95,8 +106,8 @@ public class Teacher {
 
     @Override
     public String toString() {
-        return "{teacherId : " + teacherId + ", teacherName : " + teacherName + ", password : " + password
-                + ", gender : " + gender + ", jobTitle : " + jobTitle + ", cources : " + cources + "}";
+        return "{teacherId : " + teacherId + ", userName : " + userName + ", teacherName : " + teacherName
+                + ", password : " + password + ", gender : " + gender + ", jobTitle : " + jobTitle + ", cources : "
+                + cources + "}";
     }
-    
 }

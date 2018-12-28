@@ -29,8 +29,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         boolean isAdmin = (boolean) session.getAttribute("isAdmin");
 
         HandlerMethod hm = (HandlerMethod) handler;
-        if (hm.getBean() instanceof AppController || hm.getBean() instanceof AttachmentController
-                || hm.getBean() instanceof LoginController || isAdmin) {
+        if (hm.getBean() instanceof AppController || hm.getBean() instanceof AttachmentController || isAdmin) {
             // App里面的就不做权限控制了，相当于公共的，省的写一个就要配置一个例外
             // 超管也直接跳过权限
             return true;

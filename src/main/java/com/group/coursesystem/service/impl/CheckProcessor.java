@@ -34,22 +34,19 @@ public class CheckProcessor implements CheckService {
         logger.info("开始校验请求用户...");
         // 判断是否是管理员
         if (Admin.role.equals(role)) {
-            if (admin.getName()
-                     .equals(name)
-                    && admin.getPassword()
-                            .equals(password)) {
+            if (admin.getName().equals(name) && admin.getPassword().equals(password)) {
                 return new User(0000 + "_admin", admin.getName(), Admin.role, null, admin.getClass());
             }
         } else if (Teacher.role.equals(role)) {
-            Teacher thr = teacherRep.findByTeacherNameAndPassword(name, password);
+            Teacher thr = teacherRep.findByUsernameAndPassword(name, password);
             if (thr != null) {
-                return new User(thr.getTeacherId() + "_" + thr.getTeacherName(), thr.getTeacherName(), Teacher.role,
+                return new User(thr.getTeacherId() + "_" + thr.getUserName(), thr.getTeacherName(), Teacher.role,
                         thr.getGender(), thr.getClass());
             }
         } else if (Student.role.equals(role)) {
-            Student stu = stuRep.findByStuNameAndPassword(name, password);
+            Student stu = stuRep.findByUsernameAndPassword(name, password);
             if (stu != null) {
-                return new User(stu.getStuId() + "_" + stu.getStuName(), stu.getStuName(), Student.role,
+                return new User(stu.getStuId() + "_" + stu.getUsername(), stu.getStuName(), Student.role,
                         stu.getGender(), stu.getClass());
             }
         }
@@ -70,5 +67,5 @@ public class CheckProcessor implements CheckService {
             return false;
         return null;
     }
-
+    
 }

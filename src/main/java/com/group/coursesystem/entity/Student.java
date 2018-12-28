@@ -36,6 +36,9 @@ public class Student {
     @Column(name = "stu_no")
     private Integer stuNo;
 
+    @Column(name = "username")
+    private String username;
+
     @Column(name = "stu_name")
     private String stuName;
 
@@ -96,6 +99,14 @@ public class Student {
 
     public void setStuNo(Integer stuNo) {
         this.stuNo = stuNo;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getStuName() {
@@ -172,10 +183,10 @@ public class Student {
 
     @Override
     public String toString() {
-        return "{stuId : " + stuId + ", stuNo : " + stuNo + ", stuName : " + stuName + ", password : " + password
-                + ", gender : " + gender + ", degree : " + degree + ", phoneNum : " + phoneNum + ", grade : " + grade
-                + ", classNum : " + classNum + ", selectedCourses : " + selectedCourses + ", birthday : " + birthday
-                + "}";
+        return "{stuId : " + stuId + ", stuNo : " + stuNo + ", username : " + username + ", stuName : " + stuName
+                + ", password : " + password + ", gender : " + gender + ", degree : " + degree + ", phoneNum : "
+                + phoneNum + ", grade : " + grade + ", classNum : " + classNum + ", selectedCourses : "
+                + selectedCourses + ", birthday : " + birthday + "}";
     }
 
 }

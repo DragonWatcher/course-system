@@ -44,13 +44,13 @@ public class MainServiceProcessor implements MainService {
         if (user == null) {
             logger.info("用户名或密码错误...");
             rAttributes.addFlashAttribute("error", "用户名或密码错误！");
-            return "login";
+            return REDIRECT_TOLOGIN;
         }
         logger.info("用户登录成功 : " + user + "");
 
+        session.setAttribute(SysContents.SESSION_MEMBER_KEY, user);
         // 将用户可用菜单和权限存入session
         session.setAttribute("menus", resources.getMenusByRole(user.getRole()));
-        session.setAttribute(SysContents.SESSION_MEMBER_KEY, user);
         session.setAttribute("isAdmin", Role.A.equals(user.getRole()));
 
         return REDIRECT_INDEX_PAGE;
