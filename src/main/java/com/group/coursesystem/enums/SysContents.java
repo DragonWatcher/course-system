@@ -8,4 +8,10 @@ public interface SysContents {
 
     String SESSION_VERIFY_CODE_KEY = "verify_code";
 
+    String SUCCESS = "SUCCESS";
+
+    String FAIL = "FAIL";
+
+    /** 系统初始密码 */
+    String INITIAL_PASSWORD = "123456";
 }

@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.group.coursesystem.enums.Gender;
 import com.group.coursesystem.enums.Role;
@@ -24,7 +25,11 @@ public class Teacher {
     @Column(name = "teacher_id")
     private Long teacherId;
 
+    @Column(name = "username")
+    private String username;
+
     @Column(name = "teacher_name")
+    @NotNull
     private String teacherName;
 
     @Column(name = "password")
@@ -49,6 +54,14 @@ public class Teacher {
 
     public void setTeacherId(Long teacherId) {
         this.teacherId = teacherId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getTeacherName() {
@@ -91,4 +104,10 @@ public class Teacher {
         this.cources = cources;
     }
 
+    @Override
+    public String toString() {
+        return "{teacherId : " + teacherId + ", username : " + username + ", teacherName : " + teacherName
+                + ", password : " + password + ", gender : " + gender + ", jobTitle : " + jobTitle + ", cources : "
+                + cources + "}";
+    }
 }

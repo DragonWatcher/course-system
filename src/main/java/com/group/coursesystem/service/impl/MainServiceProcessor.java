@@ -11,9 +11,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.group.coursesystem.entity.User;
 import com.group.coursesystem.enums.Role;
 import com.group.coursesystem.enums.SysContents;
-import com.group.coursesystem.resources.Resources;
 import com.group.coursesystem.service.CheckService;
 import com.group.coursesystem.service.MainService;
+import com.group.coursesystem.service.MenuStore;
 
 @Service("mainSvc")
 public class MainServiceProcessor implements MainService {
@@ -28,7 +28,7 @@ public class MainServiceProcessor implements MainService {
     private CheckService checkService;
 
     @Autowired
-    private Resources resources;
+    private MenuStore resources;
 
     @Override
     public String doLoin(String role, String userName, String password, RedirectAttributes rAttributes,
@@ -44,14 +44,13 @@ public class MainServiceProcessor implements MainService {
         if (user == null) {
             logger.info("用户名或密码错误...");
             rAttributes.addFlashAttribute("error", "用户名或密码错误！");
-            return "login";
+            return REDIRECT_TOLOGIN;
         }
         logger.info("用户登录成功 : " + user + "");
 
+        session.setAttribute(SysContents.SESSION_MEMBER_KEY, user);
         // 将用户可用菜单和权限存入session
         session.setAttribute("menus", resources.getMenusByRole(user.getRole()));
-        session.setAttribute(SysContents.SESSION_MEMBER_KEY, user);
-        // 是否是管理员
         session.setAttribute("isAdmin", Role.A.equals(user.getRole()));
 
         return REDIRECT_INDEX_PAGE;

@@ -5,8 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.group.coursesystem.entity.Teacher;
 
-@Repository("teacherRep")
+@Repository
 public interface TeacherRepository extends JpaRepository<Teacher, Long> {
 
-    Teacher findByTeacherNameAndPassword(String TeacherName, String password);
+    Teacher findByUsernameAndPassword(String username, String password);
 }
