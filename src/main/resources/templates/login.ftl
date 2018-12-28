@@ -13,7 +13,7 @@
   <form action="login" method="post" autocomplete="off">
     <div class="input_outer">
       <i class="fa fa-user-o u_user"></i>
-      <input required="required" name="userName" class="text" placeholder="输入账号" type="text">
+      <input required="required" name="username" class="text" placeholder="输入账号" type="text">
     </div>
     <div class="input_outer">
       <i class="fa fa-eye u_user"></i>
@@ -21,9 +21,9 @@
   		
     </div>
     <div class="checkbox my_checkbox">
-   		 <label><input name='subject' type="radio" checked="checked" value="S" />学生</label>
-		 <label><input name='subject' type="radio"  value="T" />教师</label>
-		 <label><input name='subject' type="radio"  value="M"/>管理员</label>
+   		 <label><input name='role' type="radio" checked="checked" value="student" />学生</label>
+		 <label><input name='role' type="radio"  value="teacher" />教师</label>
+		 <label><input name='role' type="radio"  value="admin"/>管理员</label>
     </div>
     <div class="mb2">
       <button class="act-but submit" style="color: #FFFFFF">登录</button>
