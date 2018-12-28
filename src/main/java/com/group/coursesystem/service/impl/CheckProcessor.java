@@ -37,7 +37,9 @@ public class CheckProcessor implements CheckService {
             if (admin.getName().equals(name) && admin.getPassword().equals(password)) {
                 return new User(0000 + "_admin", admin.getName(), Admin.role, null, admin.getClass());
             }
-        } else if (Teacher.role.equals(role)) {
+        }
+        // 教师和学生是分表存储的，根据role = tableName的规则，分表查询
+        else if (Teacher.role.equals(role)) {
             Teacher thr = teacherRep.findByUsernameAndPassword(name, password);
             if (thr != null) {
                 return new User(thr.getTeacherId() + "_" + thr.getUsername(), thr.getTeacherName(), Teacher.role,

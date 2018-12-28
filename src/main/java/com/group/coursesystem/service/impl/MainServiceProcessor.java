@@ -42,8 +42,8 @@ public class MainServiceProcessor implements MainService {
         User user = checkService.checkUser(role, userName, password);
 
         if (user == null) {
-            logger.info("用户名或密码错误...");
-            rAttributes.addFlashAttribute("error", "用户名或密码错误！");
+            logger.info("用户名、密码或所选角色错误...");
+            rAttributes.addFlashAttribute("error", "用户名、密码或所选角色错误！");
             return REDIRECT_TOLOGIN;
         }
         logger.info("用户登录成功 : " + user + "");
