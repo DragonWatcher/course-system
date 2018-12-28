@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.group.coursesystem.service.MainService;
+import com.group.coursesystem.service.impl.MainServiceProcessor;
 
 @Controller
 public class LoginController {
@@ -20,6 +21,12 @@ public class LoginController {
     public String doLoin(String role, String username, String password, RedirectAttributes rAttributes,
             HttpSession session) {
         return mainSvc.doLoin(role, username, password, rAttributes, session);
+    }
+    
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return MainServiceProcessor.REDIRECT_TOLOGIN;
     }
 
 }
