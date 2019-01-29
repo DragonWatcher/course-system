@@ -31,11 +31,6 @@
   <script src="/js/lib/vue.js" charset="utf-8"></script>
 
   <script>
-    var MEMBER = {
-      id: '${session_member.userId}',
-      userName: '${session_member.userName}',
-      role:'${session_member.role}'
-    };
   </script>
   <script src="/js/require.js" charset="utf-8" data-main="js/app" defer async="true"></script>
 </head>
@@ -50,7 +45,13 @@
 	</div>
 	<div title="菜单" data-options="region:'west',iconCls:'fa fa-list'" style="width: 200px">
 	  <div class="easyui-accordion" data-options="fit:true,border:false">
-	  <#list menus as menu>
+	       <div data-options="iconCls:'fa fa-cogs'">
+	           <#list menus as menu>
+	           <ul class="crm-menu">
+	               <li data-url="${menu.url}">${menu.menuName}</li>
+	           </ul>
+	           </#list>
+	       </div>
 		  <!-- <#if !menu.parent??>
 	        <div title="${menu.resName}" data-options="iconCls:'fa fa-cogs'">
 	          <ul class="crm-menu">
@@ -62,7 +63,6 @@
 	          </ul>
 	        </div>
 		  </#if> -->
-	  </#list>
 	  </div>
 	</div>
 	<div data-options="region:'center',href:'/desktop'">
